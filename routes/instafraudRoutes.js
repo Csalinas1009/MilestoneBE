@@ -6,24 +6,22 @@ const Image = require("../models/instafraudModels")
 
 
 //upload to cloudinary
-router.post("/", upload.single("image", async (req, res) => {
+router.post("/", upload.single("image"), async(req, res) => {
     try {
         const data = await uploadToCloudinary(req.file.path, "instafraud");
-        const savedImg = await Image.updateOne(
-            {_id: req.params.id},
+        Image.updateOne(
             {
-                $set: {
+                $set:{
                     imageUrl: data.url,
-                    publicId: data.public_id,
+                    publicId: data.public_id
                 }
             }
         )
-        res.status(200).send('upload complete')
+        res.status(200).send('uploaded')
     } catch (error) {
-        console.log(error)
-        res.status(404).send(error)
+        res.status(400).send(error)
     }
-}))
+})
 
 
 //get all
