@@ -18,7 +18,7 @@ router.post('/create', async (req, res) => {
 })
 
 //get all
-router.get('/getAll', async (req, res) => {
+router.get('/get', async (req, res) => {
     try {
         const data = await Model.find()
         res.json(data)
