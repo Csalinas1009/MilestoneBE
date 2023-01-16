@@ -6,7 +6,7 @@ const upload = require('../middleware/upload')
 
 
 //upload to cloudinary
-router.post("/image/:id"), upload.single("image"), async (req, res) => {
+router.post("/image"), upload.single("image"), async (req, res) => {
     try {
         const data = await uploadToCloudinary(req.file.path, "instafraud");
         const savedImg = await Model.updateOne(
