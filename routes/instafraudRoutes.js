@@ -2,6 +2,7 @@ const express = require('express')
 const Model = require('../models/instafraudModels')
 const router = express.Router()
 const {uploadToCloudinary, removeFromCloudinary} = require('../services/cloudinary')
+const upload = require('../middleware/upload')
 
 //upload post
 router.post('/image/:id', upload.single('instafraud'), async (req, res) => {
