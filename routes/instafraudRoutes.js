@@ -5,27 +5,17 @@ const {uploadToCloudinary, removeFromCloudinary} = require('../services/cloudina
 const upload = require('../middleware/upload')
 
 //upload post
-router.post("/image/:id", upload.single("instafraudImage"), async (req, res) => {
+app.post('/upload', async (req, res) => {
     try {
-      //Upload Image to Cloudinary
-      const data = await uploadToCloudinary(req.file.path, "instafraud");
-      //Save Image Url and publiId ti the database
-      const savedImg = await User.updateOne(
-        { _id: req.params.id },
-        {
-          $set: {
-            imageUrl: data.url,
-            publicId: data.public_id,
-          },
-        }
-      );
-  
-      res.status(200).send("user image uploaded with success!");
-    } catch (error) {
-      res.status(400).send(error);
+      const newImage = new Image({
+        imageUrl: req.body.imageUrl
+      });
+      await newImage.save();
+      res.json(newImage.imageUrl);
+    } catch (err) {
+      console.error('Something went wrong', err);
     }
   });
-
 
 //get all
 router.get("/", async (req,res)=>{
