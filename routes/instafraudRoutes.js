@@ -10,7 +10,7 @@ router.post("/upload", upload.single("instafraudImage"), async (req, res) => {
       //Upload Image to Cloudinary
       const data = await uploadToCloudinary(req.file.path, "instafraud");
       //Save Image Url and publiId ti the database
-      const savedImg = await User.updateOne(
+      const savedImg = await Model.updateOne(
         { _id: req.params.id },
         {
           $set: {
