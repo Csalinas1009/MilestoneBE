@@ -5,7 +5,7 @@ const {uploadToCloudinary, removeFromCloudinary} = require('../services/cloudina
 const upload = require('../middleware/upload')
 
 //upload post
-router.post('/image/:id', upload.single('instafraud'), async (req, res) => {
+router.post('/image/:id', upload.single('instafraudImage'), async (req, res) => {
     try {
         const data = await uploadToCloudinary(req.file.path, "instafraud")
         const savedPicture = await User.updateOne(
