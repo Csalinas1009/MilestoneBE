@@ -2,8 +2,13 @@ const mongoose = require('mongoose')
 
 const instafraudSchema = new mongoose.Schema({
     
-    picture: {
+    publicId: {
         type: String
+    },
+
+    imageUrl: {
+        type: String,
+        required: false
     }       
 })
 
