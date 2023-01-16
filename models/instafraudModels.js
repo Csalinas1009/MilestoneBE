@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
-const instaFraudSchema = new mongoose.Schema({
+const imageSchema = new mongoose.Schema({
 
-    publicID: {
+    publicId: {
         type: String
     
     },
-    
+
     imageUrl: {
         type: String,
         required: false
@@ -14,6 +14,6 @@ const instaFraudSchema = new mongoose.Schema({
 
 },{timestamps: true})
 
-const Post = mongoose.model('instafraud', instaFraudSchema)
+const Image = mongoose.model('image', imageSchema)
 
-module.exports = Post
+module.exports = Image
