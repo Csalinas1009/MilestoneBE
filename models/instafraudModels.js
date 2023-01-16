@@ -1,13 +1,11 @@
 const mongoose = require('mongoose')
 
-const instaFraudSchema = new mongoose.Schema({
-
+const instafraudSchema = new mongoose.Schema({
+    
     imageUrl: {
         type: String,
-        required: false
-    }
-},{timestamps: true})
+        require: false
+    }       
+})
 
-const User = mongoose.model('instafraud', instaFraudSchema)
-
-module.exports = User
+module.exports = mongoose.model('instafraud', instafraudSchema)
