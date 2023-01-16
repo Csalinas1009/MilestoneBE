@@ -1,11 +1,23 @@
 //dependencies
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose')
 require('dotenv').config()
 const routes = require('./routes/instafraudRoutes')
 
+
 //express app
 const app = express()
+
+//cors
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+
+
 
 
 //middleware
@@ -28,6 +40,11 @@ mongoose.connect(process.env.MONGO_URI)
         .catch((error) => {
             console.log('error')
         })
+
+
+
+        
+        
 
 
 
