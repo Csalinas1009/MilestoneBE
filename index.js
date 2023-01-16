@@ -5,7 +5,6 @@ const mongoose = require('mongoose')
 const Routes = require('./routes/instafraudRoutes')
 require('dotenv').config()
 
-
 //express app
 const app = express()
 
@@ -26,7 +25,9 @@ mongoose.connect(process.env.MONGO_URI)
 app.listen(process.env.PORT, () => {
     console.log('connected to DB and on port 4001')
 })
-            
+
+
+
 
 
         
