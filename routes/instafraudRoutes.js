@@ -2,7 +2,7 @@ const express = require('express')
 const upload = require('../middleware/upload')
 const {uploadToCloudinary} = require('../services/cloudinary')
 const router = new express.Router()
-import Image from '../models/instafraudModels'
+const Image = require("../models/instafraudModels")
 
 
 //upload to cloudinary
