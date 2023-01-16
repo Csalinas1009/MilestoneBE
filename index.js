@@ -22,16 +22,11 @@ app.use(('/instafraud', Routes))
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
-        .then(() => {
-            //listen f or requests
-            app.listen(process.env.PORT, () => {
-                console.log('connected to DB and port on 4001')
-            })
-        })
-        .catch((error) => {
-            console.log('error')
-        })
-
+    
+app.listen(process.env.PORT, () => {
+    console.log('connected to DB and on port 4001')
+})
+            
 
 
         
