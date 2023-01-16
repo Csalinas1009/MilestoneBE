@@ -2,23 +2,22 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose')
+const Routes = require('./routes/instafraudRoutes')
 require('dotenv').config()
-const routes = require('./routes/instafraudRoutes')
 
 
 //express app
 const app = express()
 
-//cors
-app.use(cors())
 
 //middleware
 app.use(express.json())
+//cors
+app.use(cors())
 
-app.use((req, res, next) => {
-        console.log(req.path, req.method)
-        next()
-})
+
+
+app.use(('/instafraud', Routes))
 
 
 //connect to db
