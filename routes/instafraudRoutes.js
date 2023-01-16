@@ -3,27 +3,24 @@ const Model = require('../models/instafraudModels')
 const router = express.Router()
 
 //post
-router.post('/create', async (req, res) => {
-    const data = new Model({
-        picture: req.body.picture
-    })
-
-    try {
-        const imageToSave = await data.save();
-        res.status(200).json(imageToSave);
-
-    } catch (error) {
-        res.status(400).json({message: error.message})
+router.post("/", async (req,res)=>{
+    const newPost = new Model(req.body);
+    try{
+        const savedPost = await newPost.save();
+        res.status(200).json(savedPost);
+    }catch(err){
+        res.status(500).json(err)
     }
 })
 
 //get all
-router.get('/get', async (req, res) => {
-    try {
-        const data = await Model.find()
-        res.json(data)
-    } catch (error) {
-        res.status(500).json({message: error.message})
+router.get("/", async (req,res)=>{
+    try{
+        const pin = await Model.find();
+        res.status(200).json(pin);
+    }catch(err){
+        console.log(err)
+        res.status(500).send('err')
     }
 })
 
@@ -38,30 +35,24 @@ router.get('/post/:id', async (req, res) => {
 })
 
 //update by id
-router.patch('/update/:id', async (req, res) =>{
-    try {
-        const id = req.params.id;
-        const updateData = req.body;
-        const options = {new: true};
-
-        const result = await Model.findByIdAndUpdate(
-            id, updateData, options
-        )
-
-        res.send(result)
-    } catch (error) {
-        res.status(400).json({message: error.message})
+router.patch("/:id", async (req,res)=>{
+    try{
+        const pin = await Model.findByIdAndUpdate( req.params.id, req.body);
+        res.status(200).json(pin);
+    }catch(err){
+        console.log(err)
+        res.status(500).send('err')
     }
 })
 
 //delete by id
-router.delete('/delete/:id', async (req, res) => {
-    try {
-        const id = req.params.id
-        const data = await Model.findByIdAndDelete(id)
-        res.send("deleted")
-    } catch (error) {
-        
+router.delete("/:id", async (req,res)=>{
+    try{
+        const pin = await Model.findOneAndDelete({ _id: req.params.id });
+        res.status(200).json(pin);
+    }catch(err){
+        console.log(err)
+        res.status(500).send('err')
     }
 })
 
