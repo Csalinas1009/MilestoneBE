@@ -1,15 +1,15 @@
 const express = require('express')
-const Model = require('../models/instafraudModels')
 const router = express.Router()
 const {uploadToCloudinary, removeFromCloudinary} = require('../services/cloudinary')
 const upload = require('../middleware/upload')
+const Post = require('../models/instafraudModels')
 
 
 //upload to cloudinary
 router.post("/image"), upload.single("image"), async (req, res) => {
     try {
         const data = await uploadToCloudinary(req.file.path, "instafraud");
-        const savedImg = await Model.updateOne(
+        const savedImg = await Post.updateOne(
             {_id: req.params.id},
             {
                 $set: {
@@ -28,7 +28,7 @@ router.post("/image"), upload.single("image"), async (req, res) => {
 //get all
 router.get("/", async (req,res)=>{
     try{
-        const data = await Model.find();
+        const data = await Post.find();
         res.status(200).json(data);
     }catch(err){
         console.log(err)
