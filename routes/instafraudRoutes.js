@@ -1,6 +1,5 @@
 const express = require('express')
 const upload = require('../middleware/upload')
-const {uploadToCloudinary} = require('../services/cloudinary')
 const router = new express.Router()
 const Image = require("../models/instafraudModels")
 
@@ -27,8 +26,5 @@ router.get("/", async (req,res)=>{
         res.status(500).send('err')
     }
 })
-
-
-
 
 module.exports = router;
