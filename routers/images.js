@@ -2,6 +2,7 @@ const express = require('express')
 const upload = require('../middleware/upload')
 const {uploadToCloudinary} = require('../services/cloudinary')
 const router = new express.Router()
+const Image = require('../models/image')
 
 router.post('/image', upload.single("image"), async(req, res) => {
     try {
