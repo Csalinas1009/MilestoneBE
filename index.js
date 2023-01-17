@@ -1,38 +1,14 @@
-//dependencies
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose')
-const instaFraudRouter = require("./routes/instafraudRoutes")
-require('dotenv').config()
+const express = require('express')
+require('./db/mongoose')
+const imageRouter = require('./routers/images')
 
-//express app
 const app = express()
 
+const port = process.env.PORT || 4001
 
-//middleware
 app.use(express.json())
-//cors
-app.use(cors())
+app.use(imageRouter)
 
-
-
-app.use(instaFraudRouter)
-
-
-//connect to db
-mongoose.connect(process.env.MONGO_URI)
-    
-app.listen(process.env.PORT, () => {
-    console.log('connected to DB and on port 4001')
+app.listen(port, () => {
+    console.log("server is up on port 4001")
 })
-
-
-
-
-
-        
-        
-
-
-
-
