@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 require('./db/mongoose')
+require('dotenv').config()
 const imageRouter = require('./routers/images')
 
 const app = express()
