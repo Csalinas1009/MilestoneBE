@@ -2,6 +2,7 @@ const express = require('express')
 const upload = require('../middleware/upload')
 const router = new express.Router()
 const Image = require("../models/instafraudModels")
+const app = express()
 
 
 //upload to cloudinary
