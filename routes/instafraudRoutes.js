@@ -6,7 +6,7 @@ const Image = require("../models/instafraudModels")
 
 
 //upload to cloudinary
-router.post("/", upload.single("image"), async(req, res) => {
+router.post("/upload", upload.single("image"), async(req, res) => {
     try {
         const data = await uploadToCloudinary(req.file.path, "instafraud");
          await Image.updateOne(
