@@ -2,11 +2,11 @@ const express = require('express')
 const upload = require('../middleware/upload')
 const router = new express.Router()
 const Image = require("../models/instafraudModels")
-const app = express()
+
 
 
 //upload to cloudinary
-app.post('/image', parser.single("image"), (req, res) => {
+router.post('/image', parser.single("image"), (req, res) => {
     console.log(req.file) // to see what is returned to you
     const image = {};
     image.url = req.file.url;
