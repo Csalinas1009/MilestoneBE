@@ -18,7 +18,8 @@ router.post('/image', upload.single("image"), async(req, res) => {
         )
         res.status(200).send("image uploaded")
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).send(error);
+        console.log(error)
     }
 })
 
