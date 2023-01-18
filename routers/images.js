@@ -12,7 +12,7 @@ router.post('/image', upload.single("image"), async(req, res) => {
             {
                 $set: {
                     imageUrl: data.url,
-                    pubclidId: data.public_id,
+                    publicId: data.public_id,
                 }
             }
         )
